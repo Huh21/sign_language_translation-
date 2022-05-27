@@ -133,7 +133,7 @@ class WiseNLU {
 
                 if (0 < morphemesMap.size()) {
                     morphemes = new ArrayList<Morpheme>(morphemesMap.values());
-                    translate();
+                    //translate();
                     morphemes.sort((morpheme1, morpheme2) -> {
                         return morpheme2.count - morpheme1.count;
                     });
@@ -146,8 +146,6 @@ class WiseNLU {
                         Log.d("{ " + morpheme.text + " : " + morpheme.type + " }\n", "test");
                     });
 
-
-            /*
             // 형태소들 중 명사들에 대해서 많이 노출된 순으로 출력 ( 최대 5개 )
             morphemes
                     .stream()
@@ -160,17 +158,20 @@ class WiseNLU {
                     .forEach(morpheme -> {
                         Log.d("[명사] " + morpheme.text + " ("+morpheme.count+")", "확인");
                     });
-             */
+
+            // translate(morphemes);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    } }
 
-    public static String translate (List<Map<String, String>> input) {
+/*
+    public static String translate (List<Morpheme> input) {
         String output = "";
+        input = input.stream().filter();
 
 
         for (int i = 0 ; i < input.size() ; i++) {
@@ -192,7 +193,7 @@ class WiseNLU {
         }
 
 
-        /*
+
          실습실 주의 사항
          1. USB 바이러스 감염 주의 (USB 사용 시 포맷하시고 사용하시기 바랍니다.)
          2. 컴퓨터 종료 후 퇴실하기 바랍니다.
@@ -205,15 +206,15 @@ class WiseNLU {
         for(int i=0; i<Array.length(); i++) {
                 JSONObject object = Array.getJSONObject(i);
 
-                // 1. 수화 표현을 위한 문장 요소 제거
+                // 1. 수어 표현을 위한 문장 요소 제거
                 // 조사(J~) / 어미(E~) / 문법적 요소(S~)
-                if (!(object.getString("type").start    sWith("J") && object.getString("type").startsWith("E")
+                if (!(object.getString("type").startsWith("J") && object.getString("type").startsWith("E")
                 && object.getString("type").startsWith("S"))) {
 
                 // 문법적 요소(SF)에서는 물음표를 얻어내야 함
                 }
 
-                // 2. 수화 표현의 변환 및 시제 표현
+                // 2. 수어 표현의 변환 및 시제 표현
                 if (object.getString("type").equals("NNB")) {
                     if (
                     // 의존 명사는 다 NNB로 취급이 되어서 단위성 의존 명사(마리, 명, 그루, 개 등)을 찾아내서 어떻게 제거하는지?
@@ -223,12 +224,12 @@ class WiseNLU {
                     // EP를 따로 검사하여서 었, 였과 같은 시제 표현을 발견하면 '끝'이라는 수어적 표현으로 변환되게
                 }
 
-               // 3. 수화 높임말 용어 변경 및 위치 이동
+               // 3. 수어 높임말 용어 변경 및 위치 이동
                     // 높임말은 표현이 한정적이므로 직접 변환? (계시다 -> 있다, 잡수시다 -> 먹다)
                     // '시'와 같은 높임을 나타내는 선어말 어미는 EP 태그로 따로 분류되어 걸러질 것으로 예상
             }
-         */
+
 
         return output;
     }
-}
+}*/
